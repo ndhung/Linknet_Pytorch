@@ -1,0 +1,16 @@
+{
+    "pascal":
+    {
+      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/pascal/VOCdevkit/VOC2012/"
+    },
+  
+    "sbd":
+    {
+      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/pascal/benchmark_RELEASE/"
+    },
+
+    "camvid":
+    {
+      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/camvid/"
+    }
+  }
