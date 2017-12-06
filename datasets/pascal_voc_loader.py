@@ -23,7 +23,7 @@ class PascalVOCLoader(data.Dataset):
         self.root = root
         self.split = split
         self.is_transform = is_transform
-        self.n_classes = 21
+        self.n_classes = 20
         self.label_scale = label_scale
         self.img_size = img_size if isinstance(
             img_size, tuple) else (img_size, img_size)
@@ -50,9 +50,12 @@ class PascalVOCLoader(data.Dataset):
         lbl_path = self.root + '/SegmentationClass/pre_encoded/' + img_name + '.png'
 
         img = m.imread(img_path)
+        img = m.imresize(img, (self.img_size[0], self.img_size[1]))
         img = np.array(img, dtype=np.uint8)
 
         lbl = m.imread(lbl_path)
+        lbl = m.imresize(
+            lbl, (self.img_size[0], self.img_size[1]), 'nearest', mode='F')
         lbl = np.array(lbl, dtype=np.int32)
 
         if self.is_transform:
@@ -64,7 +67,6 @@ class PascalVOCLoader(data.Dataset):
         img = img[:, :, ::-1]
         img = img.astype(np.float64)
         img -= self.mean
-        img = m.imresize(img, (self.img_size[0], self.img_size[1]))
         # Resize scales images from 0 to 255, thus we need
         # to divide by 255.0
         img = img.astype(float) / 255.0
@@ -73,8 +75,6 @@ class PascalVOCLoader(data.Dataset):
 
         lbl[lbl == 255] = 0
         lbl = lbl.astype(float)
-        lbl = m.imresize(
-            lbl, (self.img_size[0] // self.label_scale, self.img_size[1] // self.label_scale), 'nearest', mode='F')
         lbl = lbl.astype(int)
 
         img = torch.from_numpy(img).float()
@@ -131,7 +131,7 @@ class PascalVOCLoader(data.Dataset):
         self.files['train_aug'] = self.files['train'] + sbd_train_list
 
         if pre_encode:
-            print "Pre-encoding segmentation masks..."
+            print("Pre-encoding segmentation masks...")
             for i in tqdm(sbd_train_list):
                 lbl_path = sbd_path + 'dataset/cls/' + i + '.mat'
                 lbl = io.loadmat(lbl_path)[
@@ -147,9 +147,10 @@ class PascalVOCLoader(data.Dataset):
 
 
 if __name__ == '__main__':
-    local_path = '/home/vietdoan/Workingspace/Enet/pascal/VOCdevkit/VOC2012'
+    local_path = get_data_path('pascal')
+    print(local_path)
     dst = PascalVOCLoader(local_path, is_transform=True)
-    trainloader = data.DataLoader(dst, batch_size=4)
+    trainloader = data.DataLoader(dst, batch_size=1)
     print("ok")
     for i, data in enumerate(trainloader):
         imgs, labels = data

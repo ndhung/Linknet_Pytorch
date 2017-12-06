@@ -1,16 +1,21 @@
 {
-    "pascal":
-    {
-      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/pascal/VOCdevkit/VOC2012/"
-    },
-  
-    "sbd":
-    {
-      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/pascal/benchmark_RELEASE/"
-    },
+  "pascal":
+  {
+    "data_path": "/media/hung/Data/Dataset/VOC/VOCdevkit/VOC2012/"
+  },
 
-    "camvid":
-    {
-      "data_path": "/home/vietdoan/Workingspace/LinkNet/datasets/camvid/"
-    }
+  "sbd":
+  {
+    "data_path": "/media/hung/Data/Dataset/VOC/benchmark_RELEASE/"
+  },
+
+  "camvid":
+  {
+    "data_path": "/media/hung/Data/Dataset/camvid/"
+  },
+
+  "cityscape":
+  {
+    "data_path": "/media/hung/Data/Dataset/cityscapes/"
   }
+}

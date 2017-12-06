@@ -1,8 +1,8 @@
 import json
 
-from pascal_voc_loader import PascalVOCLoader
-from camvid_loader import CamvidLoader
-from cityscapes_loader import CityscapesLoader
+from .pascal_voc_loader import PascalVOCLoader
+from .camvid_loader import CamvidLoader
+from .cityscapes_loader import CityscapesLoader
 
 def get_loader(name):
     """get_loader
@@ -11,5 +11,5 @@ def get_loader(name):
     return {
         'pascal': PascalVOCLoader,
         'camvid': CamvidLoader,
-        'cityscapes': CityscapesLoader
+        'cityscape': CityscapesLoader
     }[name]

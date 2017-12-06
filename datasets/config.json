@@ -1,0 +1,21 @@
+{
+    "pascal":
+    {
+      "data_path": "/media/hung/Data/Dataset/VOC/VOCdevkit/VOC2012/"
+    },
+  
+    "sbd":
+    {
+      "data_path": "/media/hung/Data/Dataset/VOC/benchmark_RELEASE/"
+    },
+
+    "camvid":
+    {
+      "data_path": "/media/hung/Data/Dataset/camvid/"
+    },
+
+    "cityscape":
+    {
+      "data_path": "/media/hung/Data/Dataset/cityscapes/"
+    }
+  }

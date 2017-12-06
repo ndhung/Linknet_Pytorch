@@ -49,7 +49,7 @@ class CityscapesLoader(data.Dataset):
         lbl = m.imread(lbl_path)
         lbl = np.array(lbl, dtype=np.int32)
         lbl_copy = lbl.copy()
-        for k, v in self.id_to_trainid.iteritems():
+        for k, v in self.id_to_trainid.items():
             lbl[lbl_copy == k] = v
         
         if self.is_transform:

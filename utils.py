@@ -4,6 +4,9 @@ import torch.nn.functional as F
 import json
 import numpy as np
 import scipy.misc as m
+import datetime
+import os
+import os.path as osp
 
 mean = np.array([103.939, 116.779, 123.68])
 
@@ -110,3 +113,15 @@ def get_data_path(name):
     js = open('config.json').read()
     data = json.loads(js)
     return data[name]['data_path']
+
+def get_log_dir(here, model_name):
+    # load config
+    name = 'MODEL-%s_' % (model_name)
+    now = datetime.datetime.now()
+    name += '_TIME-%s' % now.strftime('%Y%m%d-%H%M%S')
+    # create out
+    log_dir = osp.join(here, 'logs', name)
+    if not osp.exists(log_dir):
+        os.makedirs(log_dir)
+
+    return log_dir
