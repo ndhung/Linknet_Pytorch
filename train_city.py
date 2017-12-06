@@ -48,7 +48,6 @@ def train(args, out, net_name):
     if torch.cuda.is_available():
         model.cuda(0)
         weight = weight.cuda(0)
-    weight = None
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr_rate, weight_decay=args.w_decay)
     # optimizer = torch.optim.RMSprop(model.parameters(), lr=args.lr_rate)
     scheduler = StepLR(optimizer, step_size=100, gamma=args.lr_decay)
